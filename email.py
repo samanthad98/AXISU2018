@@ -1,4 +1,6 @@
 import sys
+import imaplib
+import email
 # This is a automated email collecter designed for summer intern
 
 # read email account and password from a txt file
@@ -22,6 +24,15 @@ def get_email_content():
 	account, password = get_email_account();
 	print(account + '\r');
 	print(password);
+
+	ser = imaplib.IMAP4_SSL(port = '***', host = '***');
+	print("Connected to server");
+	ser.login(account, password);
+	print("Logined");
+	ser.select();
+
+	ser.close();
+	ser.logout();
 	return;
 
 get_email_content();
